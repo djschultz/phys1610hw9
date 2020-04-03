@@ -50,8 +50,15 @@ int main(int argc, char *argv[])
 
   // Setup initial conditions for P
   P.fill(0.0);
-  P[N/2+1] = 1.0;  // shift by one for the left guard cell
-
+  if(rank == size/2){
+    if(size%2 == 0){
+      P[1] = 1.0;
+    } 
+    
+    if(size%2 == 1) {
+    P[Nlocal/2+1] = 1.0;  // shift by one for the left guard cell 
+    }
+  }
   // Setup initial time
   double time = 0.0;    
 
