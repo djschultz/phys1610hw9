@@ -13,7 +13,7 @@ void diffusion1d_timestep(rvector<double>& P, double D, double dt, double dx)
     int rank;
    
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    MPI_Comm_rank(MPI_COMM_RANK, &rank);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
  
     static rvector<double> laplacian;
     const int Nguards = 2;
