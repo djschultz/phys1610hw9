@@ -16,9 +16,9 @@
 // the main function drives the simulation
 int main(int argc, char *argv[]) 
 {
-  MPI_Init(&argc, &argv);
   int size;
   int rank;
+  MPI_Init(&argc, &argv);
 
   MPI_Comm_size(MPI_COMM_WORLD, &size);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
   const int Nguards = 2;                 // number of guard cells
   const int outputEvery = int(time_between_output/dt + 0.5); // how many steps between output
   const int outputcols = 48;             // number of columns for sparkline output
-  const int Nlocal = N;                  // determine number of point for this MPI process 
+  const int Nlocal = N/size;              // determine number of point for this MPI process 
   // Allocate density data 
   rvector<double> P(Nlocal+Nguards);
 
