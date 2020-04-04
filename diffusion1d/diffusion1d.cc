@@ -16,6 +16,7 @@
 // the main function drives the simulation
 int main(int argc, char *argv[]) 
 {
+  // initialize MPI
   int size;
   int rank;
   MPI_Init(&argc, &argv);
@@ -46,13 +47,13 @@ int main(int argc, char *argv[])
   const int outputcols = 48;             // number of columns for sparkline output
   const int Nlocal = N/size;              // determine number of point for this MPI process 
   // Allocate density data 
-  rvector<double> P(Nlocal+Nguards);
+  rvector<double> P(Nlocal+Nguards); // create a local P for this particular process. This is why it has only length Nlocal+Nguards instead of the total N.
 
-  // Setup initial conditions for P
+  // Setup initial conditions for P, but only the middle process gets a delta function.
   P.fill(0.0);
   if(rank == size/2){
     if(size%2 == 0){
-      P[1] = 1.0;
+      P[1] = 1.0; //shift by one for the left guard cell
     } 
     
     if(size%2 == 1) {

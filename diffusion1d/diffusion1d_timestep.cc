@@ -18,7 +18,7 @@ void diffusion1d_timestep(rvector<double>& P, double D, double dt, double dx)
     static rvector<double> laplacian;
     const int Nguards = 2;
     const int Nplusguard = P.size();
-    const int N = Nplusguard - Nguards;    
+    const int N = Nplusguard - Nguards; // note that this is the local N because we are dealing with a local P    
     
     int left = rank-1; 
     if(left < 0) left = size-1;
