@@ -1,0 +1,1 @@
+Using between 1 and 16 cores (which fits on one node) gives us improved performance as the number of cores increases, but appears to saturate after about 4 or 5 cores. Once we reach 17 cores, we have that MPI is passing messages between nodes, so we experience a dramatic slowdown. Using between 17 and 32 cores produces the same result each time.
